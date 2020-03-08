@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!--  第一步引入 vue.js -->
+    <script src="js/vue.js"></script>
+
+<!--    引入 Vue-Router  的js-->
+    <script src="js/vue-router.js"></script>
+    <style>
+        .router-link-active{
+            color: #74cf59;
+            font-size: 100px;
+        }
+    </style>
+</head>
+<body>
+    
+    <div id="app">
+<!--        这个是渲染成 a 标签-->
+        <router-link to="/login">注册</router-link><br>
+        <router-link to="/register">登陆</router-link>
+        <div>
+            <!--        这个是容器，专门用来放 页面的跳转的-->
+            <router-view></router-view>
+        </div>
+
+    </div>
+
+
+    <script>
+
+        var login={
+            template:"<h1>大家好，这个是登陆组件</h1>"
+        }
+        var register={
+            template: "<h1>大家好，这个是注册组件</h1>"
+        }
+        // 创建 路由对象
+        var routerObj=new VueRouter({
+            // 每个路由规则都是一个对象，身上有两个必填的属性
+            // path :这个负责监听 路由链接地址
+            // componment: 表示如果匹配到的path,所对应的组件,必须是组件模板对象。不能是模板对象名称
+            routes:[
+                {path:"/login",component:login},
+                {path:"/register",component:register},
+                // 这个是默认 一开始页面为#/ ，所以这样子设置，可以出现默认出现的组件，让页面不为空，但是不推荐
+                // {path:"/",component:register},
+                {path:"/",redirect:"/login"}// 这个 出现默认组件的方式，比较推荐
+            ]
+        })
+        var vm=new Vue({
+            el:"#app" ,
+            data:{
+                msg:"欢迎走进 Vue的 入门学习 ，joker  欢迎你",
+            },
+            // 将路由规则对象添加到 vm 实例上，用来监听URL的 地址变化
+            router:routerObj
+
+        });
+    
+
+
+    </script>
+
+</body>
+</html>

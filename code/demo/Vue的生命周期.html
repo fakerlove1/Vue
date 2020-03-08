@@ -1,0 +1,133 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    <title>Document</title>-->
+<!--    &lt;!&ndash;  第一步引入 vue.js &ndash;&gt;-->
+<!--    <script src="js/vue.js"></script>-->
+
+
+<!--</head>-->
+
+<!--<body>-->
+<!--    &lt;!&ndash; HTML &ndash;&gt;-->
+<!--    <div id="app">-->
+<!--        <p>{{msg}}</p>-->
+<!--        <p>{{date}}</p>-->
+<!--    </div>-->
+
+<!--    <script>-->
+
+
+<!--        var vm = new Vue({-->
+<!--            el: "#app",-->
+<!--            data: {-->
+<!--                flag: true,-->
+<!--                msg: "大家好",-->
+<!--                date:new Date()-->
+<!--            },-->
+
+<!--            beforeCreate(){-->
+<!--                // 第一个生命周期，表示生命周期被创建出来之前，会执行他,此时数据是没有的-->
+<!--                console.log("beforeCreate &ndash;&gt;"+this.flag)-->
+<!--            },-->
+<!--            created: function(){-->
+<!--                // 第二个生命周期，这个时候能够是有 data 和 methods 中的数据和方法。-->
+<!--                console.log("create-&#45;&#45;date&ndash;&gt;"+this.date)-->
+<!--            },-->
+<!--            beforeMount(){-->
+<!--                // 第三个生命周期，这个是-->
+<!--            },-->
+<!--            mounted:function () {-->
+<!--                console.log("before &ndash;&gt;> msg &ndash;&gt;"+this.msg)-->
+<!--            },-->
+
+
+<!--        });-->
+
+
+<!--    </script>-->
+
+<!--</body>-->
+
+<!--</html>-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vue生命周期学习</title>
+    <script src="https://cdn.bootcss.com/vue/2.5.16/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <h1>{{message}}，这是在outerHtml中</h1>
+</div>
+</body>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            message: 10
+        },
+        beforeCreate: function() {
+            console.group('------beforeCreate创建前状态------');
+            console.log("%c%s", "color:red" , "el     : " + this.$el);
+            console.log("%c%s", "color:red","data   : " + this.$data);
+            console.log("%c%s", "color:red","message: " + this.message)
+        },
+        created: function() {
+            console.group('------created创建完毕状态------');
+            console.log("%c%s", "color:red","el     : " + this.$el);
+            console.log("%c%s", "color:red","data   : " + this.$data);
+            console.log("%c%s", "color:red","message: " + this.message);
+        },
+        beforeMount: function() {
+            console.group('------beforeMount挂载前状态------');
+            console.log("%c%s", "color:red","el     : " + (this.$el));
+            console.log(this.$el);
+            console.log("%c%s", "color:red","data   : " + this.$data);
+            console.log("%c%s", "color:red","message: " + this.message);
+        },
+        mounted: function() {
+            console.group('------mounted 挂载结束状态------');
+            console.log("%c%s", "color:red","el     : " + this.$el);
+            console.log(this.$el);
+            console.log("%c%s", "color:red","data   : " + this.$data);
+            console.log("%c%s", "color:red","message: " + this.message);
+        },
+        beforeUpdate: function () {
+            console.group('beforeUpdate 更新前状态===============》');
+            console.log("%c%s", "color:red","el     : " + this.$el);
+            console.log(this.$el);
+            console.log("%c%s", "color:red","data   : " + this.$data);
+            console.log("%c%s", "color:red","message: " + this.message);
+        },
+        updated: function () {
+            console.group('updated 更新完成状态===============》');
+            console.log("%c%s", "color:red","el     : " + this.$el);
+            console.log(this.$el);
+            console.log("%c%s", "color:red","data   : " + this.$data);
+            console.log("%c%s", "color:red","message: " + this.message);
+        },
+        beforeDestroy: function () {
+            console.group('beforeDestroy 销毁前状态===============》');
+            console.log("%c%s", "color:red","el     : " + this.$el);
+            console.log(this.$el);
+            console.log("%c%s", "color:red","data   : " + this.$data);
+            console.log("%c%s", "color:red","message: " + this.message);
+        },
+        destroyed: function () {
+            console.group('destroyed 销毁完成状态===============》');
+            console.log("%c%s", "color:red","el     : " + this.$el);
+            console.log(this.$el);
+            console.log("%c%s", "color:red","data   : " + this.$data);
+            console.log("%c%s", "color:red","message: " + this.message)
+        }
+    })
+</script>
+</html>

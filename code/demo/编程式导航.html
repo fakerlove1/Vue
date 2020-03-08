@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!--  第一步引入 vue.js -->
+    <script src="js/vue.js"></script>
+    <script src="js/vue-router.js"></script>
+    <style>
+        .r {
+            height: 100px;
+            width: 200px;
+            background-color: red;
+        }
+
+        .b {
+            height: 100px;
+            width: 200px;
+            background-color: blue;
+        }
+    </style>
+</head>
+<body>
+
+<div id="app">
+
+    <button @click="jump_push1">编程式导航，就是用 代码来实现跳转push</button>
+    <button @click="jump_push2">push</button>
+    <button @click="jump_replace">replace</button>
+
+    <router-view></router-view>
+</div>
+
+<template id="login">
+    <div class="r">
+        <h1>这是 登录组件</h1>
+    </div>
+</template>
+
+<template id="register">
+    <div class="b">
+        <h1>这是 注册组件</h1>
+    </div>
+</template>
+
+<template id="account">
+    <div>
+
+        <p>这个是 account 路由组件</p>
+    </div>
+
+</template>
+
+<script>
+
+    var login = {
+        template: "#login",
+        created() {
+            console.log("login  的参数" + this.$route.params.userId)
+        }
+
+    }
+
+    var register = {
+        template: "#register",
+    }
+    var account = {
+        template: "#account",
+    }
+    const router = new VueRouter({
+        routes: [
+            {
+                path: "/user/:userId",
+                component: login,// 路由嵌套路由
+                name: "user"
+            },
+
+            {
+                path: "/account",
+                component: account,// 路由嵌套路由
+                name: "account"
+            },
+        ]
+    })
+    var vm = new Vue({
+        el: "#app",
+        data: {
+            msg: "欢迎走进 Vue的 入门学习 ，joker  欢迎你",
+        },
+        router,
+        methods: {
+            jump_push1() {
+                // 字符串
+                // router.push('home')
+                //
+                // 对象
+                // router.push({path: 'home'})
+                //
+                // 命名的路由
+                // router.push({name: 'user', params: {userId: '123'}})
+                //
+                // 带查询参数，变成 /register ? plan = private
+                //     router.push({path: 'register', query: {plan: 'private'}})
+                router.push({name: 'user', params: {userId: '123'}})
+            },
+            jump_push2(){
+                //router.push("account") 这个不可取，只是在 路径后面再次多加了account
+                router.push("/account")
+            },
+            jump_replace(){
+                // 这个就是没有返回，不会保存原先的内容
+                router.replace("/user/1")
+            }
+        }
+
+    });
+
+
+</script>
+
+</body>
+</html>

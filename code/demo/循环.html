@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!--  第一步引入 vue.js -->
+    <script src="js/vue.js"></script>
+
+
+</head>
+
+<body>
+    <!-- HTML -->
+    <div id="app">
+        <a v-for="item in list">{{item}} </a>
+        <br>
+
+        <!-- 索引值 -->
+        <a v-for="(item,i) in list">{{item}}---{{i}} </a>
+        <!--  这是数组对象 -->
+        <p v-for="item in listdata">{{item.id}}---{{item.name}}</p>
+        <!-- 对象 -->
+        <p v-for="(val,key) in user">{{val}}---{{key}}</p>
+
+        <!-- 还有第三个对象索引  -->
+        <p v-for="(val,key,m) in user">{{val}}---{{key}}--{{m}}</p>
+
+        <!-- 迭代数组 打印99 乘法表 -->
+
+        <p v-for="count in 9">
+            <a href="https://www.baidu.com" v-for="item in count">
+                {{count}}*{{item}}={{count*item}}
+            </a>
+        </p>
+
+    </div>
+
+    <script>
+
+        var vm = new Vue({
+            el: "#app",
+            data: {
+                list: [16, 2, 14, 5, 6, 7, 82222, 423],
+                listdata: [
+                    {
+                        id: 1,
+                        name: "joker"
+                    },
+                    {
+                        id: 2,
+                        name: "peter"
+                    }
+                ],
+                user: {
+                    id: 12819,
+                    name: "kk",
+                    age: 13
+                }
+            },
+            methods: { // 在method 中定义方法事件
+
+            }
+        });
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!--  第一步引入 vue.js -->
+    <script src="js/vue.js"></script>
+    <style>
+        .r{
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+
+<!--插槽的作用，就是传递 模板内容 ，之前讲课内容都是 传递数值-->
+<div id="app">
+
+    <kk> 这个是插槽的传递进去的内容1</kk><br>
+    <kk>
+        <div class="r">
+            这个是插槽传递进去的内容2
+        </div>
+    </kk><br>
+    <kk></kk>
+</div>
+
+<template id="login">
+    <div>
+        <div>
+            插槽组件的标题
+        </div>
+        <!--        插槽组件位置是在子组件当中的 -->
+        <slot>这个是父组件没有传递内容，默认出来的内容</slot>
+    </div>
+
+</template>
+
+<script>
+
+    var kk = {
+        template: "#login"
+    }
+
+    var vm = new Vue({
+        el: "#app",
+        data: {
+            msg: "欢迎走进 Vue的 入门学习 ，joker  欢迎你",
+        },
+        components: {
+            kk
+        }
+
+    });
+
+
+</script>
+
+</body>
+</html>

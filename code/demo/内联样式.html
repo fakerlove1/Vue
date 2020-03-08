@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!--  第一步引入 vue.js -->
+    <script src="js/vue.js"></script>
+    <style>
+        .height {
+            height: 150px;
+        }
+
+        .red {
+            color: red;
+            font-style: italic;
+        }
+
+        .blue {
+            color: royalblue;
+            letter-spacing: 1em;
+        }
+    </style>
+
+</head>
+
+<body>
+    <!-- HTML -->
+    <div id="app">
+        <!--  属性后面必须加上  单引号 -->
+        <h1 :style="{color:'red','font-style':'italic'}">这是内联样式操作</h1>
+        <h1 :style="styleobj">这是内联样式操作</h1>
+        <!-- 样式v可以存放数组 -->
+        <h1 :style="[styleobj,styleobj2]">这是内联样式操作</h1>
+    </div>
+
+    <script>
+
+        var vm = new Vue({
+            el: "#app",
+            data: {
+                flag: true,
+                styleobj: {color:'red','font-style':'italic'},
+                styleobj2:{"font-weight":500}
+            },
+            methods: { // 在method 中定义方法事件
+
+            }
+        });
+    </script>
+
+</body>
+
+</html>

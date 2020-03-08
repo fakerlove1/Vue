@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!--  第一步引入 vue.js -->
+    <script src="js/vue.js"></script>
+
+</head>
+
+<body>
+
+
+    <div id="app">
+        <h1>{{msg}}</h1>
+        <h1>{{result}}</h1>
+        <!--  v-bind 只能实现数据的单向绑定 -->
+        <input type="text" v-bind:value="msg" style="width:100px"><br>
+        <!-- v-model  能够实现双向绑定 -->
+        <input type="text" v-model="msg" style="width:100px"><br>
+
+        <input type="text" v-model="result" style="width:100px"><br>
+
+        <!-- 还能绑定 -->
+        <input type="checkbox" v-model="flag">
+        <div>flag---{{flag}}</div><br>
+        <!-- name相同 表示的是 一组 -->
+        <input type="radio" v-model="istrue" value="man" name="sex">
+        <input type="radio" v-model="istrue" value="women" name="sex">
+        <div>istrue----{{istrue}}</div>
+
+    </div>
+
+
+        <script>
+
+            var vm = new Vue({
+                el: "#app",
+                data: {
+                    msg: "数据",
+                    result: "1",
+                    flag:true,
+                    istrue:"man"
+                },
+
+            });
+
+
+        </script>
+
+</body>
+
+</html>

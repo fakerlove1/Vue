@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="922d2af5-5999-4b01-87b0-f77e36315812" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectId" id="1YQc0tSJsWznzt3GXlAVEHru41W" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\bn\Desktop\vue\code\demo\js" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\bn\Desktop\vue\code\demo" />
+      <recent name="C:\Users\bn\Desktop\vue\code\demo\js" />
+    </key>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="922d2af5-5999-4b01-87b0-f77e36315812" name="Default Changelist" comment="" />
+      <created>1582878043198</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1582878043198</updated>
+      <workItem from="1582878063478" duration="2077000" />
+      <workItem from="1583109296809" duration="7203000" />
+      <workItem from="1583198558390" duration="13539000" />
+      <workItem from="1583372207874" duration="18256000" />
+      <workItem from="1583552113014" duration="9000" />
+      <workItem from="1583567397402" duration="14752000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="361" y="71" key="#Notifications" timestamp="1582878429215">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="361" y="71" key="#Notifications/0.0.1536.824@0.0.1536.824" timestamp="1582878429215" />
+    <state x="541" y="38" key="#非父子组件之间的交互.html" timestamp="1583569749183">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="541" y="38" key="#非父子组件之间的交互.html/0.0.1536.824@0.0.1536.824" timestamp="1583569749183" />
+    <state x="425" y="187" key="run.anything.popup" timestamp="1583584030874">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="425" y="187" key="run.anything.popup/0.0.1536.824@0.0.1536.824" timestamp="1583584030874" />
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1583576296758">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1583576296758" />
+  </component>
+</project>

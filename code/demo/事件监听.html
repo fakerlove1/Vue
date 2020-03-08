@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!--  第一步引入 vue.js -->
+    <script src="js/vue.js"></script>
+    <style>
+        .height {
+            height: 150px;
+        }
+
+        .red {
+            background-color: red;
+            color: blue;
+            font-style: italic;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <!--  这个部分不能 被 vue 所管辖的范围 ，不然事件不会成功 -->
+    <input id="but" type="button" value="事件监听 document">
+    <br>
+
+    <div id="app">
+        <br>
+        <input id="v-on" type="button" value="事件监听 ，vue" v-on:click="show"><br>
+
+        <input id="v" type="button" value="事件监听 ，vue@ 写法" @click="show"><br>
+        <!--  按键 -->
+        <input id="v-text" type="text" value="" @keyup="keyup($event)"><br>
+
+        <!-- 按键修饰符 -->
+        <input id="v-text1" type="text" value="" @keyup.enter="keyup_enter($event)">
+
+        <!-- 系统修饰符 -->
+        <!-- 可以用如下修饰符来实现仅在按下相应按键时才触发鼠标或键盘事件的监听器。 -->
+        <!-- click +ctrl  --> 
+        <!-- 点击鼠标+按下 ctrl 键 才能触动事件 -->
+        <div @click.ctrl="doSomething"class="red height">Do something</div>
+
+    </div>
+
+    <!--  第二步 -->
+    <!-- 创建Vue的 实例  -->
+
+    <script>
+
+        document.getElementById("but").onclick = function () {
+            alert("点击了事件监听 document ");
+        };
+
+        var vm = new Vue({
+            el: "#app",
+            data: {
+
+            },
+            methods: { // 在method 中定义方法事件
+
+                show: function () {
+                    alert("点击了 事件监听 ，vue")
+                },
+                keyup(event) {
+                    console.log(event.key + "  点击了键盘");
+                    // console.log(event.data+"进行的回车时间");
+                },
+                keyup_enter(data) {
+                    console.log("按键修饰符,你点击了回车键 " + data.key)
+                },
+                doSomething() {
+                    console.log("做了一些事情")
+                }
+
+            }
+
+
+        });
+
+
+    </script>
+
+</body>
+
+</html>

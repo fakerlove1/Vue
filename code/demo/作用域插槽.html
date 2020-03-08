@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!--  第一步引入 vue.js -->
+    <script src="js/vue.js"></script>
+    <style>
+        .r{
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+
+<div id="app">
+
+    <kk :list="d_list">
+<!--        可以冲子组件中获取数据-->
+<!--        v-slot:slot 的名字="{子组件传递过来的数据}"-->
+        <template v-slot:myname="{item_slot}">
+            父组件筛选的数据--{{item_slot.name}}
+        </template>
+        <br>
+    </kk>
+    <br>
+
+    <kk :list="d_list">
+        <!--        可以对子组件传递过来的数据 名字进行修改-->
+        <template v-slot:myname="{item_slot:person}">
+            <strong v-if="person.flag">
+                {{person.name}}
+            </strong>
+        </template>
+    </kk>
+</div>
+
+<template id="login">
+    <div>
+      <li v-for="item in list" :key="item.id" >
+
+<!--          item_slot 是传递给父组件的数据-->
+          <slot v-bind:item_slot="item"  name="myname">
+              原本的内容--{{item.name}}
+          </slot>
+      </li>
+    </div>
+
+</template>
+
+<script>
+
+    var kk = {
+        template: "#login",
+        props:{
+            list:Array
+        }
+    }
+
+    var vm = new Vue({
+        el: "#app",
+        data: {
+            msg: "欢迎走进 Vue的 入门学习 ，joker  欢迎你",
+            d_list:[
+                {
+                    name:"joker",
+                    id:1,
+                    flag:true
+
+                },{
+                    name:"peter",
+                    id:2,
+                    flag:false
+                },{
+                    name:"pesa",
+                    id:3,
+                    flag:true
+                }
+            ]
+        },
+        components: {
+            kk
+        }
+
+    });
+
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!--  第一步引入 vue.js -->
+    <script src="js/vue.js"></script>
+</head>
+<body>
+
+<div id="app">
+
+    <p>hello,大家好我是joker</p>
+    <h1>{{msg}}</h1>
+
+<!--    组件在使用时，直接当做标签使用即可-->
+    <mycom></mycom>
+    <my-com></my-com>
+</div>
+
+
+<script>
+
+    // 组价化开发，创建组件模板对象
+    var com1 = Vue.extend({
+        template: "<h1>这个是Vue。extend 开发的组件</h1>"
+    })
+
+    // Vue.component("组件名","创建出来的组件模板对象);
+    Vue.component("mycom", com1);
+
+    // 如果使用驼峰命名的方法，那么在应用的时候，就需要加上 -
+    Vue.component("myCom", com1);
+
+
+    // vm 表示的是 VM
+    var vm = new Vue({
+        el: "#app", // 组件化开发_1.html表示当前 我们 new 的 这个Vue 实例需要控制那个 部分，#app 表示 控制  <div id="app"> 下面所有内容
+        data: { // data 属性中，存放的是 el 中需要用到是 数据
+            msg: "欢迎走进 Vue的 入门学习 ，joker  欢迎你",
+        }
+
+    });
+
+
+</script>
+
+</body>
+</html>

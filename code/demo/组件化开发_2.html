@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!--  第一步引入 vue.js -->
+    <script src="js/vue.js"></script>
+</head>
+<body>
+
+<div id="app">
+
+<!--    组件在使用时，直接当做标签使用即可-->
+    <my-com></my-com>
+    <my-com2></my-com2>
+</div>
+
+<!--这个模板一定要在 Vue 控制 的外面-->
+<template id="kk">
+    <div >
+        <h1>这个是template id="kk"直接使用模板开发出来的的</h1>
+    </div>
+</template>
+
+<script>
+
+    // 第二种使用 全局定义的
+    Vue.component("myCom",{
+        template: "<h1>这个是componemt 直接使用模板开发出来的的</h1>"
+    })
+
+    // 下面这样子的会报错，因为模板只能有一个根元素 ，不能 有两个或者更多
+    // Vue.component("myCom",{
+    //     template: "<h1>这个是componemt 直接使用模板开发出来的的</h1><span>123</span>"
+    // })
+
+    // 第三种使用的
+    Vue.component("myCom2",{
+        template: "#kk"
+    })
+
+    // vm 表示的是 VM
+    var vm = new Vue({
+        el: "#app", // 组件化开发_1.html表示当前 我们 new 的 这个Vue 实例需要控制那个 部分，#app 表示 控制  <div id="app"> 下面所有内容
+        data: { // data 属性中，存放的是 el 中需要用到是 数据
+            msg: "欢迎走进 Vue的 入门学习 ，joker  欢迎你",
+        }
+
+    });
+
+
+</script>
+
+</body>
+</html>

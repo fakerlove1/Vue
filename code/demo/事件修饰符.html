@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!--  第一步引入 vue.js -->
+    <script src="js/vue.js"></script>
+
+</head>
+
+<body>
+    <!-- HTML -->
+    <div id="app">
+        　　<div class="outer" @click="outer">
+            　　　　<div class="middle" @click="middle">
+                　 <button @click.stop="inner">点击我(^_^) stop 停止冒泡</button>
+                <button @click="inner">点击我 啥都不加</button><br>
+                <a href="https://www.baidu.com" @click.prevent="inner">有问题去找百度</a><br>
+                <button @click.prevent="inner">点击我(^_^)</button>
+                <button @click.capture="inner">点击我(^_^) capture</button>
+                <button @click.once="inner">点击我(^_^) once</button>
+                <button @click.self="inner">点击我(^_^) self</button>
+            　</div>
+        </div>
+    </div>
+    <style>
+        .outer {
+            background-color: #74cf59;
+            height: 400px;
+            width: 400px;
+        }
+
+        .middle {
+            background-color: #78a5f1;
+            height: 200px;
+            width: 200px;
+        }
+    </style>
+
+    <script>
+
+        var vm = new Vue({
+            el: "#app",
+            data: {
+
+            },
+            methods: { // 在method 中定义方法事件
+                outer() {
+                    console.log("outer 最外层")
+                },
+                inner() {
+                    console.log(" inner 最里面")
+                },
+                middle() {
+                    console.log("middle 中间")
+                }
+            }
+        });
+    </script>
+
+</body>
+
+</html>

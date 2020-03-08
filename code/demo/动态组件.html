@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!--  第一步引入 vue.js -->
+    <script src="js/vue.js"></script>
+    <style>
+        .r{
+            height: 100px;
+            width: 100px;
+            background-color: red;
+        }
+        .b{
+            height: 200px;
+            width: 200px;
+            background-color: blue;
+        }
+        .v-enter {
+
+        }
+
+        .v-leave-to {
+            opacity: 0;
+        }
+
+        /**
+        v-enter-active入场动画时间段
+        v-leave-active 离场时间段
+         */
+        .v-enter-active {
+
+        }
+
+        .v-leave-active {
+            transition: all 0.4s ease;
+        }
+    </style>
+</head>
+<body>
+
+<div id="app">
+
+    <!--         第二种方式 实现组件的切换-->
+    <a href="hello.html" @click.prevent="tag='login'">登陆</a>
+    <a href="hello.html" @click.prevent="tag='register'">注册</a>
+
+    <transition  mode="out-in">
+        <component :is="tag"></component>
+    </transition>
+
+<!--    每次切换时，并没保存 登陆时的数据-->
+
+    <br>
+    <br>
+
+    <div>
+        <!--         第二种方式 实现组件的切换-->
+        <a href="hello.html" @click.prevent="tag1='login'">登陆</a>
+        <a href="hello.html" @click.prevent="tag1='register'">注册</a>
+
+        <transition  mode="out-in">
+<!--            会保存登陆时的数据-->
+            <keep-alive>
+                <component :is="tag1"></component>
+            </keep-alive>
+        </transition>
+    </div>
+</div>
+
+<template id="login">
+    <div class="b">
+        <p >登陆页面 </p>
+       用户名：  <input type="text" v-model="name"><br>
+        密码：<input type="password" v-model="password">
+    </div>
+</template>
+
+<template id="register">
+    <div>
+
+        <p class="r">注册页面 </p>
+    </div>
+</template>
+
+<script>
+
+    // vm 表示的是 VM
+    var vm=new Vue({
+        el:"#app" ,
+        data:{
+            flag:true,
+            tag:'login',
+            tag1:'login'
+        },
+        components:{
+            login:{
+                template:"#login",
+                data(){
+                    return{
+                        password:"",
+                        name:""
+                    }
+                }
+
+            },
+            register:{
+                template: "#register"
+            }
+        }
+
+    });
+
+    // Vue 中的data 属性表示的就是 Model
+
+</script>
+
+</body>
+</html>

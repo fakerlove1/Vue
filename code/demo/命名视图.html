@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!--  第一步引入 vue.js -->
+    <script src="js/vue.js"></script>
+    <script src="js/vue-router.js"></script>
+    <style>
+        .r {
+            height: 50px;
+            width: 200px;
+            background-color: red;
+        }
+
+        .b {
+            height: 50px;
+            width: 200px;
+            background-color: blue;
+        }
+
+        .s {
+            height: 100px;
+            margin: 10px;
+            width: 100%;
+        }
+
+        .ll {
+            float: left;
+            width: 50%;
+            padding: 0;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+
+<div id="app">
+    <router-view class="s"></router-view>
+    <router-view class="s" name="two"></router-view>
+    <router-view class="s" name="three"></router-view>
+</div>
+
+<template id="login">
+    <div class="r">
+        <h1>这是 登录组件--head--1</h1>
+    </div>
+</template>
+
+<template id="register">
+    <div class="b">
+        <h1>这是 注册组件---2</h1>
+    </div>
+</template>
+
+<template id="user">
+    <div class="b">
+
+        <h1 class="ll">这是 用户组件--嵌套路由-3</h1>
+        <div class="ll">
+            <router-link to="/kk" style="color: black">这个是kk 链接</router-link>
+            <router-link to="/account" style="color: black">这个是account 链接</router-link>
+            <router-view></router-view>
+        </div>
+
+    </div>
+</template>
+
+<template id="kk">
+    <div class="b">
+        <h1>这是 kk组件---4</h1>
+    </div>
+</template>
+
+<template id="account">
+    <div>
+        <p>这个是 account 路由组件---5</p>
+
+    </div>
+</template>
+
+<script>
+
+    var login = {
+        template: "#login",
+    }
+    var register = {
+        template: "#register",
+    };
+    var kk = {
+        template: "#kk",
+    }
+    var user = {
+        template: "#user",
+    };
+    var account = {
+        template: "#account",
+    }
+    const router = new VueRouter({
+        routes: [
+            {
+                path: "/",
+                name: "home",
+                components: {
+                    default: login,
+                    "two": register,
+                    three: user
+                },// 路由嵌套路由
+                children: [
+                    {
+                        path: "kk",
+                        component: kk,// 路由嵌套路由
+                    },
+                    {
+                        path: "account",
+                        component: account,// 路由嵌套路由
+                    },
+                ]
+            },
+
+        ]
+    })
+    var vm = new Vue({
+        el: "#app",
+        data: {
+            msg: "欢迎走进 Vue的 入门学习 ，joker  欢迎你",
+        },
+        router
+
+    });
+
+
+</script>
+
+</body>
+</html>

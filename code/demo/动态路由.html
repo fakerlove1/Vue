@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!--  第一步引入 vue.js -->
+    <script src="js/vue.js"></script>
+    <script src="js/vue-router.js"></script>
+    <style>
+        .r {
+            height: 100px;
+            width: 200px;
+            background-color: red;
+        }
+
+        .b {
+            height: 100px;
+            width: 200px;
+            background-color: blue;
+        }
+    </style>
+</head>
+<body>
+
+<div id="app">
+
+    <!--        使用了query 的方式取到参数-->
+    <router-link to="/login?id=10">query登录</router-link>
+    <router-link to="/register?id=11">query注册</router-link>
+
+    <br>
+    <router-link to="/login2/211">登录</router-link>
+    <router-link to="/register2/110">注册</router-link>
+    <router-view></router-view>
+</div>
+
+<template id="login">
+    <div class="r">
+        <h1>这是 登录组件 {{$route.query.id}}</h1>
+    </div>
+</template>
+
+<template id="register">
+    <div class="b">
+        <h1>这是 注册组件 {{$route.query.id}}</h1>
+    </div>
+</template>
+
+<script>
+
+    var login = {
+        template: "#login",
+        created() {
+
+            // console.log(this.$route.query)
+            // console.log(this.$route.params)
+            if (!this.isEmptyObject(this.$route.query)) {
+                console.log(this.$route.query.id)
+            }
+
+            if (!this.isEmptyObject(this.$route.params)) {
+                console.log(this.$route.params.id)
+            }
+
+        },
+        methods: {
+            isEmptyObject(obj) {
+                for (var key in obj) {
+                    return false;//返回false，不为空对象
+                }
+                return true;//返回true，为空对象
+            }
+        }
+    }
+
+    var register = {
+        template: "#register",
+        created() {
+            if (!this.isEmptyObject(this.$route.query)) {
+                console.log(this.$route.query.id)
+            }
+
+            if (!this.isEmptyObject(this.$route.params)) {
+                console.log(this.$route.params.id)
+            }
+        },
+        methods: {
+            isEmptyObject(obj) {
+                for (var key in obj) {
+                    return false;//返回false，不为空对象
+                }
+                return true;//返回true，为空对象
+            }
+        }
+    }
+
+    const router = new VueRouter({
+        routes: [
+            {path: "/login2/:id", component: login},
+            {path: "/register2/:id", component: register},
+            {path: "/login", component: login},
+            {path: "/register", component: register},
+        ]
+    })
+    var vm = new Vue({
+        el: "#app",
+        data: {
+            msg: "欢迎走进 Vue的 入门学习 ，joker  欢迎你",
+        },
+        router
+
+    });
+
+
+</script>
+
+</body>
+</html>

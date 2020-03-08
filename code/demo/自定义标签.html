@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!--  第一步引入 vue.js -->
+    <script src="js/vue.js"></script>
+    <style>
+        .height {
+            height: 150px;
+        }
+
+        .red {
+            color: red;
+            font-style: italic;
+        }
+
+        .blue {
+            color: royalblue;
+            letter-spacing: 1em;
+        }
+    </style>
+
+</head>
+
+<body>
+
+
+<div id="app">
+    <input type="text" v-focus>
+    <!--         参数在 双引号里面 ，一个单引号 对应参数-->
+    <p v-color="'blue'">全局的 自定义标签</p>
+
+    <p v-owns> 私有 的自定义 标签</p>
+    <p v-owns1> 私有 的自定义 标签--钩子快速写法</p>
+</div>
+
+<script>
+
+
+    <!--自定义的关于自动聚焦的方法-->
+    Vue.directive("focus", {
+
+        //
+        bind: function (el) { // 每当指令绑定要元素上的时候，就会立刻执行 这个 bind  元素，但是只执行一次
+            // 这个时候 元素还没有插入到 dom 元素的时候，el.focus()是没有效果的
+            // el.focus();
+        },
+        inserted: function (el) { // 元素插入到dom 元素的时候
+            el.focus()
+        },
+        update: function () {
+
+        }
+
+    });
+
+    // 自定义关于颜色
+    Vue.directive("color", {
+
+        // 一个页面渲染过程
+        // 数据-------->  内存 --------> 页面
+        //  bind 过程
+        // 数据 -> bind --内存--insert-->页面
+
+        bind: function (el) { // 和样式相关的属性一般都在 bind
+            el.style.color = 'red'
+        },
+        inserted: function (el, binding, vNode) { //和 js 有关的都在 inserted 的里面
+            el.focus()
+            console.log(binding.name)
+            console.log(binding.value)
+            el.style.color = binding.value;
+        },
+        update: function () {
+
+        }
+
+    });
+
+
+    var vm = new Vue({
+        el: "#app",
+        data: {},
+        methods: { // 在method 中定义方法事件
+
+        },
+        // 自定义 私有 的
+        directives:{
+            "owns":{
+                bind(el){
+                  el.style.color='red'
+                },
+                inserted(el,binding){
+                    el.style.fontSize="50px"
+                }
+            },
+            // 还有一种用钩子函数快速的写法
+            "owns1":function (el,binding) {
+                el.style.color='green';
+                el.style.fontSize="50px"
+            }
+        }
+
+    });
+
+
+</script>
+
+</body>
+
+</html>

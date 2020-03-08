@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!--  第一步引入 vue.js -->
+    <script src="js/vue.js"></script>
+
+</head>
+<body>
+    
+    <div id="app">
+        <!--  v-bind  是vue 提供的用于绑定 属性的 指令 -->
+      <input type="button" value="v-bind 测试" v-bind:title="mytitle">
+      <br>
+      <br>
+      <input type="button" value="v-bind 测试" title="mytitle">
+      <br>
+      <br>
+      <!-- v-bind 会把后面的 东西当作一个js  -->
+       <input type="button" value="v-bind 测试" v-bind:title="mytitle+'1234'">
+      <br>
+      <br>
+      <!-- v-bind 可以被简写为一个冒号加上一个 属性 :title   -->
+      <input type="button" value="v-bind 测试" :title="mytitle+'1234'">
+      <br>
+      <br>
+    </div>
+
+    <!--  第二步 -->
+    <!-- 创建Vue的 实例  -->
+
+    <script>
+
+        var vm=new Vue({
+            el:"#app" , 
+            data:{ 
+            mytitle:"这个是自己定义的title"
+            }
+
+        });
+    
+
+    </script>
+
+</body>
+</html>

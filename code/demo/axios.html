@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!--  第一步引入 vue.js -->
+    <script src="js/vue.js"></script>
+    <script src="js/axios.min.js"></script>
+    <script src="js/jquery-3.4.1.min.js"></script>
+</head>
+<body>
+
+<div id="app">
+    <button @click="get">发送get 请求</button>
+    <p>{{msg}}</p>
+</div>
+
+
+<script>
+
+    var vm = new Vue({
+        el: "#app",
+        data: {
+            msg: "数据",
+        },
+        methods: {
+            get() {
+
+                const aj=axios.create({
+                    baseURL: 'https://api.apiopen.top',
+                    headers:
+                        {
+                            "Content-Type":"application/json;charset=UTF-8",
+                            "Accept":"text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9"
+                        },
+                    method: "get"
+
+                });
+                    aj.get("/getAllUrl").then((response)=>{
+                    console.log(response);
+                    this.msg = response.data;
+                }).catch(function (error) {
+                        console.log(error);
+                    });
+                // $.ajax({
+                //     type: "get",
+                //     url: "https://api.apiopen.top/getAllUrl",
+                //     // data: "name=John&location=Boston",
+                //     success: function(msg){
+                //         alert( "Data Saved: " + msg );
+                //     }
+                // });
+            }
+        }
+
+    });
+
+
+</script>
+
+</body>
+</html>

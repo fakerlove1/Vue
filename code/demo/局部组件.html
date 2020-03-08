@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!--  第一步引入 vue.js -->
+    <script src="js/vue.js"></script>
+</head>
+<body>
+
+<div id="app">
+
+    <p>hello,大家好我是joker</p>
+    <login></login>
+</div>
+
+<template id="kk">
+    <div>
+        <h1>{{msg}}</h1>
+        <input @click="add" type="button" value="++">
+        <p>{{count}}</p>
+    </div>
+</template>
+<script>
+
+
+    // vm 表示的是 VM
+    var vm = new Vue({
+        el: "#app", // 组件化开发_1.html表示当前 我们 new 的 这个Vue 实例需要控制那个 部分，#app 表示 控制  <div id="app"> 下面所有内容
+        data: { // data 属性中，存放的是 el 中需要用到是 数据
+            msg: "这个是 Vue 的data 和属性，joker  欢迎你",
+        },
+        components:{
+            login:{
+                template:"#kk",
+                // data  必须是方法，且返回一个对象
+                data(){
+                    return{
+                        msg:"这个是组件中的 msg",
+                        count:0
+                    }
+                },
+                methods:{
+                    add(){
+                        this.count++;
+                    }
+                }
+
+            }
+        }
+
+    });
+
+
+</script>
+
+</body>
+</html>

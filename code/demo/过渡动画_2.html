@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!--  第一步引入 vue.js -->
+    <script src="js/vue.js"></script>
+
+<!--    引入animate.css 第三方 css-->
+    <link rel="stylesheet" href="js/animate.css">
+
+
+</head>
+<body>
+
+<div id="app">
+
+    <input type="button" value="点击" @click="show" >
+    <!--        transition 包裹 被动画控制的元素 ，这个元素是官方提供的-->
+<!--    类里面一定要 有animated  基本类-->
+<!--   enter-active-class 表示的入场动画  leave-active-class 表示离场动画 -->
+    <transition  enter-active-class="animated bounce" leave-active-class="animated bounceOut" :duration="2000">
+        <h1 v-if="flag">{{msg}}1</h1>
+    </transition>
+
+<!--    animated 基本类放在别处也是可以的-->
+    <transition  enter-active-class="bounce" leave-active-class="bounceOut">
+        <h1 v-if="flag" class="animated">{{msg}}2</h1>
+    </transition>
+
+    <transition :duration="2000">
+        <h1 v-if="flag">{{msg}}3，需要2秒钟</h1>
+    </transition>
+<!--     表示离场动画 800 毫秒 入场动画 500 毫秒 -->
+    <transition :duration="{ enter: 500, leave: 800 }">
+        <h1 v-if="flag">{{msg}}4 需要 0.8秒</h1>
+    </transition>
+</div>
+
+
+<!--  第二步 -->
+<!-- 创建Vue的 实例  -->
+
+<script>
+
+    // vm 表示的是 VM
+    var vm = new Vue({
+        el: "#app", // 表示当前 我们 new 的 这个Vue 实例需要控制那个 部分，#app 表示 控制  <div id="app"> 下面所有内容
+        data: { // data 属性中，存放的是 el 中需要用到是 数据
+            flag: true,
+            flag1:true,
+            msg: "大家伙"
+        },
+        methods: {
+            show() {
+                this.flag = !this.flag
+            }
+        }
+
+    });
+
+    // Vue 中的data 属性表示的就是 Model
+
+</script>
+
+</body>
+</html>

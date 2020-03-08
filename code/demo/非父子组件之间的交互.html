@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!--  第一步引入 vue.js -->
+    <script src="js/vue.js"></script>
+</head>
+<body>
+
+<div id="app">
+
+    <p>这个是父组件 </p>
+    <one></one>
+    <br>
+    <two></two>
+</div>
+
+<template id="one">
+    <div>
+        这个是子组件1---{{num}}
+        <button @click="add1">让组件2 数据+1</button>
+    </div>
+</template>
+<template id="two">
+    <div>
+        这个是子组件2---{{num}}
+        <button @click="add2">让子组件1 数据 +1</button>
+    </div>
+</template>
+
+<script>
+    var bus = new Vue();// 扮演事件中心的角
+
+    const one= {
+        template: "#one",
+        data() {
+            return {
+                num: 0
+            }
+        },
+        methods: {
+            add1() {
+                bus.$emit("add2", 1)
+            }
+        },
+        mounted() {
+            bus.$on("add1", (val) => {
+                console.log(this.num)
+                this.num += 1;
+            })
+        }
+    };
+
+    const two={
+        template: "#two",
+        data() {
+            return {
+                num: 0
+            }
+        },
+        methods: {
+            add2() {
+                // 发送事件 add1 ，给组件1
+                bus.$emit("add1", 1)
+            }
+        },
+        // 监听组件发送过来的add2 事件
+        mounted() {
+
+            bus.$on("add2", (val)=>{
+                console.log(this.num)
+                this.num += 1;
+            })
+        }
+    };
+
+    var vm = new Vue({
+        el: "#app",
+        data: {
+            msg: "欢迎走进 Vue的 入门学习 ，joker  欢迎你",
+        },
+        components:{
+            one,
+            two
+        }
+    });
+
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!--  第一步引入 vue.js -->
+    <script src="js/vue.js"></script>
+    <style>
+        [v-clock]{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    
+    <div id="app">
+        <h1  v-clock>++++++{{msg}}-----</h1>
+        <p v-text="name"></p>
+        <p v-text="age"></p>
+        <p v-html="v"></p>
+    </div>
+
+
+    <!--  第二步 -->
+    <!-- 创建Vue的 实例  -->
+
+    <script>
+
+// vm 表示的是 VM
+        var vm=new Vue({
+            el:"#app" , 
+            data:{ 
+                msg:"v_clock 属性", // v-clock 能够解决 插值表达式的闪烁问题，在网速较慢情况下 ，没有加载到数据时，显示的会是++++++{{msg}}-----，不是++++++v_clock 属性-----
+                name:"joker",// 直接赋值
+                age:"<h1> 133 v-text -age</h1>", // v-text  不能够显示 html 内容 
+                v:"<h1>v-html大家好</h1>" // v-html  能够渲染 html 信息
+
+            }
+
+        });
+    
+// Vue 中的data 属性表示的就是 Model 
+
+    </script>
+
+</body>
+</html>

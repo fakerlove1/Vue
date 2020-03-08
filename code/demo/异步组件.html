@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!--  第一步引入 vue.js -->
+    <script src="js/vue.js"></script>
+</head>
+<body>
+    
+    <div id="app">
+<!--        这个组件会在一秒钟后出现-->
+        <async-example></async-example>
+    </div>
+
+
+    <script>
+        Vue.component('async-example', function (resolve, reject) {
+            setTimeout(function () {
+                // 向 `resolve` 回调传递组件定义
+                resolve({
+                    template: '<div>I am async!</div>'
+                })
+            }, 1000)
+        })
+        var vm=new Vue({
+            el:"#app" ,
+            data:{
+                msg:"欢迎走进 Vue的 入门学习 ，joker  欢迎你",
+            }
+
+        });
+    
+
+
+    </script>
+
+</body>
+</html>

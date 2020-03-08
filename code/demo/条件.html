@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!--  第一步引入 vue.js -->
+    <script src="js/vue.js"></script>
+
+
+</head>
+
+<body>
+    <!-- HTML -->
+    <div id="app">
+        <input type="button" @click="show" width="100px"value="切换">
+       <p v-if="flag">这是v-if 控制的元素</p>
+       <p v-else>这个是 v-else 控制的元素</p>
+
+       <p v-show="flag">这是 v-show 控制的元素</p>
+
+       <!--  还有一个v-else-if 的元素 -->
+    </div>
+
+    <script>
+
+        var vm = new Vue({
+            el: "#app",
+            data: {
+                flag:true
+            },
+            methods: { // 在method 中定义方法事件
+
+            show(){
+               this.flag= this.flag?false:true;
+            }
+            }
+        });
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!--  第一步引入 vue.js -->
+    <script src="js/vue.js"></script>
+    <script src="js/vuex.js"></script>
+</head>
+<body>
+    
+    <div id="app">
+        <counter></counter>
+    </div>
+
+
+    <script>
+
+        const store = new Vuex.Store({
+            state: {
+                count: 0
+            },
+            mutations: {
+                increment (state) {
+                    state.count++
+                }
+            }
+        })
+        const counter = {
+            template: `<div>{{ count }}</div>`,
+            computed: {
+                count () {
+                    return store.state.count
+                }
+            }
+        }
+        var vm=new Vue({
+            el:"#app" ,
+            data:{
+                msg:"欢迎走进 Vue的 入门学习 ，joker  欢迎你",
+            },
+            components:{
+                counter
+            },
+            store,
+
+
+        });
+    
+
+
+    </script>
+
+</body>
+</html>

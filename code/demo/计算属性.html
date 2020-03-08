@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!--  第一步引入 vue.js -->
+    <script src="js/vue.js"></script>
+
+</head>
+
+<body>
+
+    <div id="app">
+        <input type="number" v-model:value="a">
+
+        <p>结果为-----{{jisuan}}</p>  
+        <p>结果为-----{{jisuan1()}}</p>
+
+        <!-- 第二种写法 -->
+        <p>com 结果为{{com}}</p>
+
+        <input type="number" v-model="b">
+        
+        <!-- watch 的监听事件 ，类似于 v-model -->
+        <p> b_jisuan  的结果为{{b_jisuan}}</p>
+
+    </div>
+
+    <script>
+
+        var vm = new Vue({
+            el: "#app",
+            data: {
+                mytitle: "这个是自己定义的title",
+                a: 0,
+                b:10
+            },
+            computed: {
+                //  这个是 有缓存的
+                jisuan() {
+                    console.log("computed")
+                    return this.a * this.a;
+                },
+                //  方法的第二种写法
+                com:{
+                    get(){
+                        console.log("这个是 get 方法")
+                        return this.a-1;
+                    },
+                    // 如何调用呢 ，按下F12 然后在控制台输入 vm.com=10，就会调用 set 方法
+                    set(data){
+                        this.a=data;
+                    }
+                },
+
+                b_jisuan(){
+                    console.log("调用了 b_jushuan")
+                    return this.b*this.b;
+                }
+
+            },
+            methods:{
+                jisuan1() {
+                    // console.log("methods")
+                    //  这个是没有缓存的
+                    return this.a * this.a;
+                }
+            },
+            //  这个是事件的监听
+            watch:{
+                b(newQuestion, oldQuestion){
+                    console.log("b 的数据变化了"+newQuestion);
+                    // this.b_jisuan();
+
+                }
+            }
+
+        });
+
+
+    </script>
+
+</body>
+
+</html>

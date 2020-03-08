@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!--  第一步引入 vue.js -->
+    <script src="js/vue.js"></script>
+    <script src="js/vue-router.js"></script>
+    <style>
+        .r {
+            height: 100px;
+            width: 200px;
+            background-color: red;
+        }
+
+        .b {
+            height: 100px;
+            width: 200px;
+            background-color: blue;
+        }
+    </style>
+</head>
+<body>
+
+<div id="app">
+    <router-link to="/account/login">登录</router-link>
+    <router-link to="/account/register">注册</router-link>
+
+    <router-view></router-view>
+</div>
+
+<template id="login">
+    <div class="r">
+        <h1>这是 登录组件</h1>
+    </div>
+</template>
+
+<template id="register">
+    <div class="b">
+        <h1>这是 注册组件</h1>
+    </div>
+</template>
+
+<template id="account">
+    <div>
+
+        <p>这个是 account 路由组件</p>
+        <router-view></router-view>
+    </div>
+
+</template>
+
+<script>
+
+    var login = {
+        template: "#login",
+    }
+
+    var register = {
+        template: "#register",
+    }
+    var account = {
+        template: "#account"
+    }
+    const router = new VueRouter({
+        routes: [
+            {
+                path: "/account",
+                component: account,// 路由嵌套路由
+                children: [
+                    // 注意点  {path: "/login", component: login},
+                    // 加了斜杠 的话，<router-link to="/account/login">登录</router-link> 是【匹配不到的
+                    // <router-link to="/login">登录</router-link> 才能匹配到的 ，所以子组件不要加/
+                    {path: "login", component: login},
+                    {path: "register", component: register},
+                    // 默认路由
+                    {path: "", component: login},
+                ]
+            },
+
+            {path: "/", redirect: "/account"},
+        ]
+    })
+    var vm = new Vue({
+        el: "#app",
+        data: {
+            msg: "欢迎走进 Vue的 入门学习 ，joker  欢迎你",
+        },
+        router
+
+    });
+
+
+</script>
+
+</body>
+</html>

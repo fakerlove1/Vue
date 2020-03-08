@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!--  第一步引入 vue.js -->
+    <script src="js/vue.js"></script>
+</head>
+<body>
+    
+    <div id="app">
+
+<!--    第一步-----   父组件在使用子组件的 时候，通过属性绑定的v-bind 的形式，传递给子组件 -->
+      <child v-bind:parentmsg="msg"></child>
+        <child2 :list="parent_list" :list_movies="parent_list_movies"></child2>
+    </div>
+
+<!--    使用template 语法写的 子组件-->
+    <template id="child">
+<!--        div 表示 template 只能有一个 根元素-->
+        <div>
+            <h1>这个是子组件</h1>
+            <p>{{parentmsg}}</p>
+        </div>
+    </template>
+
+    <template id="child2">
+        <div>
+            <h1>这个是子组件2 </h1>
+            <p v-for="item in list">{{item}}</p>
+            <p v-for="item in list_movies">{{item}}</p>
+        </div>
+
+    </template>
+
+
+    <script>
+
+        var vm=new Vue({
+            el:"#app" ,
+            data:{
+                msg:"这个是父亲组件的信息 ",
+                parent_list:["父组件的list 1","list2"],
+                parent_list_movies: ["父组件的电影1","父组件的 电影2 "],
+            },
+            components:{
+                // 这个挂载了子组件
+                child:{
+                    template:"#child",
+                    // 第二步--- prpos 表示的是 数组，父组件传递过来的 父组件parentmsg 属性，必须在 props 中定义
+                    props:["parentmsg"]
+                    // 注意 props 中的所有数据 都是父组件 传过来的数据，props 中的数据都是只读属性，不能够进行修改的
+                    // data 中的数据 是自己私有的。可以随意进行 修改
+                },
+
+                child2:{
+                    template: "#child2",
+                    // 也可以写成对象形式
+                    props: {
+                        // 第一种写法
+                        list:Array,
+                        // 第二种写法
+                        list_movies:{
+                            type:Array,
+                            // default  这个方法必须要有，否则会报错
+                            default(){
+                                return ['电影1 ',"电影2"]
+                            },
+                            // 是否为必须
+                            required:true
+                        }
+                    }
+                }
+            }
+
+        });
+
+    </script>
+
+</body>
+</html>

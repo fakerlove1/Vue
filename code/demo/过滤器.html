@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!--  第一步引入 vue.js -->
+    <script src="js/vue.js"></script>
+
+
+</head>
+
+<body>
+    <!-- HTML -->
+    <div id="app">
+        <p>{{msg | msgformat}}</p>
+        <p>{{date |dateformate}}</p>
+
+    </div>
+
+    <script>
+
+        //  全局过滤器的作用 ，就是全部的 new Vue()都是可以用的
+        //第一个参数为过滤器的名称 ，第二个参数为 要进行的方法
+        Vue.filter('msgformat', function (data) {
+
+            return data + "1213";
+        })
+
+        var vm = new Vue({
+            el: "#app",
+            data: {
+                flag: true,
+                msg: "大家好",
+                date:new Date()
+            },
+            methods: { // 在method 中定义方法事件
+
+                show() {
+                    this.flag = this.flag ? false : true;
+                }
+            },
+            // 注意点，过滤器调用是，采用 就近原则，如果私有过滤器 和全局过滤器名字一样，使用私有过滤器的名字
+            filters:{ // 定义私有过滤器，仅仅能够自己使用
+                dateformate(data){
+                    var newdata=new Date(data);
+                    var year=newdata.getFullYear();
+                    var month =newdata.getMonth()+1;
+                    console.log(year)
+                    console.log(month)
+
+                    //  ` ` 是ES6  中新增的模板字符串
+                    return `${year}-${month}`;
+                }
+            }
+        });
+
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!--  第一步引入 vue.js -->
+    <script src="js/vue.js"></script>
+    <style>
+        .height{
+            height: 150px;
+        }
+        .red{
+            color:red;
+            font-style: italic;
+        }
+        .blue{
+            color: royalblue;
+            letter-spacing: 1em;
+        }
+    </style>
+
+</head>
+
+<body>
+    <!-- HTML -->
+    <div id="app">
+        <h1 class="height red">这个是用来测试 vue 的样式</h1>
+        <h1 :class="['height','red']">这个是用来测试 vue 的样式</h1>
+        <!--  三目表达式使用 -->
+        <h1 :class="['red',flag?'blue':'']">这个是用来测试 vue 的样式</h1>
+        <h1 :class="['red',{'blue':flag}]">这个是用来测试 vue 的样式</h1>
+        <h1 :class="{red:true,blue:flag}">这个是用来测试 vue 的样式</h1>
+        <h1 :class="classobj">这个是用来测试 vue 的样式</h1>
+    </div>
+  
+    <script>
+
+        var vm = new Vue({
+            el: "#app",
+            data: {
+                flag:true,
+                classobj:{red:true,blue:true}
+            },
+            methods: { // 在method 中定义方法事件
+              
+            }
+        });
+    </script>
+
+</body>
+
+</html>

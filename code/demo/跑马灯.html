@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!--  第一步引入 vue.js -->
+    <script src="js/vue.js"></script>
+
+</head>
+
+<body>
+
+    <!-- 跑马灯 事件 -->
+    <!--定义两个事件  -->
+    <!-- 第一个事件每隔一段事件就进行字符串的操作-->
+    <!-- 第二个事件就是让 定时事件停止 -->
+
+    <div id="app">
+        <input type="button" @click="dong" value="动起来">
+        <input type="button" @click="stop" value="别动">
+
+        <h1>{{msg}}</h1>
+        <h1 :value="msg"></h1>
+    </div>
+
+
+    <script>stop
+
+        var vm = new Vue({
+            el: "#app",
+            data: {
+                msg: "别浪!! 猥琐发育",
+                flag: null // 表示是否在运动 
+
+            },
+            methods: { // 在method 中定义看素偶哟
+
+                dong() {
+                    // 只有这个事件没有启动了,才能来 启动
+                    if(this.flag!=null) return;
+
+                    //  这里使用 lamber 表达式 ,400 毫秒 刷新一次
+                    this.flag = setInterval(() => {
+
+                        var start = this.msg.substring(0, 1);// 获取第一个字符串
+                        var end = this.msg.substring(1);// 获取剩下是 字符串
+                        this.msg = end + start;// 进行拼接
+                        // vue 会自己监听 自己data 中数据的变化
+                        // 不需要程序员自己来进行重新复制
+
+                    }, 400);
+
+                },
+                stop() {
+                    //  只有这个事件已经 启动,才能进行清楚
+                    if(this.flag!=null){
+                        clearInterval(this.flag);
+                        // 每当清楚 定时器,就重新赋值
+                        this.flag=null;
+                    }
+
+                }
+
+            }
+
+
+        });
+
+
+    </script>
+
+</body>
+
+</html>
